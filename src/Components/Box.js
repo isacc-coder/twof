@@ -1,15 +1,18 @@
-import React from "react";
-import {makeStyles} from "@material-ui/core/styles";
-import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
-import LocalAtmIcon from "@material-ui/icons/LocalAtm";
-import PeopleIcon from "@material-ui/icons/People";
-import TrendingUpIcon from "@material-ui/icons/TrendingUp";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import Link from "@material-ui/core/Link";
-import {Container} from "@material-ui/core";
-import TextsmsIcon from "@material-ui/icons/Textsms";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import LocalAtmIcon from '@material-ui/icons/LocalAtm';
+import PeopleIcon from '@material-ui/icons/People';
+import TrendingUpIcon from '@material-ui/icons/TrendingUp';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
+import { Container } from '@material-ui/core';
+import TextsmsIcon from '@material-ui/icons/Textsms';
+import { useState } from 'react';
+import axios from 'axios';
+import { useQuery, useMutation } from 'react-query';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,22 +20,24 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 20,
   },
   cards: {
-    padding: "1rem",
+    padding: '1rem',
   },
   one: {
-    fontSize: 50,
-    padding: "10px",
-    marginLeft: "50px",
-    backgroundColor: "#ffc107",
-    borderRadius: "50%",
-    position: "center",
-    justifyContent: "center",
-    color: "#fff",
-    top: "0px",
+    fontSize: 20,
+    padding: '10px',
+    marginLeft: '50px',
+    backgroundColor: '#ffc107',
+    borderRadius: '50%',
+    position: 'center',
+    justifyContent: 'center',
+    color: '#fff',
+    top: '0px',
   },
 }));
 export default function Box() {
   const classes = useStyles();
+  const mutation = useMutation(() => axios.get('https://138.68.163.236/api/v1/sms'));
+
   return (
     <div className={classes.root}>
       <Container className={classes.root}>

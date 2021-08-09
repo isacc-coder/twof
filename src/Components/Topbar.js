@@ -1,17 +1,17 @@
-import React from "react";
-import {makeStyles} from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import NotificationsIcon from "@material-ui/icons/Notifications";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import Typography from "@material-ui/core/Typography";
-import Badge from "@material-ui/core/Badge";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
-import MoreIcon from "@material-ui/icons/MoreVert";
-import {createTheme} from "@material-ui/core/styles";
-import yellow from "@material-ui/core/colors/yellow";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import Typography from '@material-ui/core/Typography';
+import Badge from '@material-ui/core/Badge';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import MoreIcon from '@material-ui/icons/MoreVert';
+import { createTheme } from '@material-ui/core/styles';
+import yellow from '@material-ui/core/colors/yellow';
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
@@ -20,27 +20,27 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   title: {
-    display: "none",
-    [theme.breakpoints.up("sm")]: {
-      display: "block",
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
     },
   },
   sectionDesktop: {
-    display: "none",
-    [theme.breakpoints.up("md")]: {
-      display: "flex",
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
     },
   },
   sectionMobile: {
-    display: "flex",
-    [theme.breakpoints.up("md")]: {
-      display: "none",
+    display: 'flex',
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
     },
   },
 
   customBadge: {
-    backgroundColor: "#ffc107",
-    color: "white",
+    backgroundColor: '#ffc107',
+    color: 'white',
   },
 }));
 
@@ -50,7 +50,7 @@ const theme = createTheme({
       main: yellow[500],
     },
     secondary: {
-      main: "#f44336",
+      main: '#f44336',
     },
   },
 });
@@ -80,14 +80,14 @@ export default function Topbar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const menuId = "primary-search-account-menu";
+  const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
-      anchorOrigin={{vertical: "top", horizontal: "right"}}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       id={menuId}
       keepMounted
-      transformOrigin={{vertical: "top", horizontal: "right"}}
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
@@ -96,20 +96,20 @@ export default function Topbar() {
     </Menu>
   );
 
-  const mobileMenuId = "primary-search-account-menu-mobile";
+  const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{vertical: "top", horizontal: "right"}}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       id={mobileMenuId}
       keepMounted
-      transformOrigin={{vertical: "top", horizontal: "right"}}
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
         <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={2} classes={{badge: classes.customBadge}}>
+          <Badge badgeContent={2} classes={{ badge: classes.customBadge }}>
             <NotificationsIcon />
           </Badge>
         </IconButton>
@@ -147,7 +147,7 @@ export default function Topbar() {
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="show 2 new notifications" color="inherit">
-              <Badge badgeContent={2} classes={{badge: classes.customBadge}}>
+              <Badge badgeContent={2} classes={{ badge: classes.customBadge }}>
                 <NotificationsIcon />
               </Badge>
             </IconButton>

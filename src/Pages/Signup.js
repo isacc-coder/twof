@@ -1,31 +1,34 @@
-import React from "react";
-import {makeStyles} from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import {Container} from "@material-ui/core";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
-import Box from "@material-ui/core/Box";
-import LockOpenIcon from "@material-ui/icons/LockOpen";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import { Container } from '@material-ui/core';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Link from '@material-ui/core/Link';
+import Box from '@material-ui/core/Box';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
+import { useState } from 'react';
+import axios from 'axios';
+import { useQuery, useMutation } from 'react-query';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(4),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: "100%", // Fix IE 11 issue.
+    width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -33,14 +36,22 @@ const useStyles = makeStyles((theme) => ({
   },
   one: {
     flex: 4,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     padding: 0,
   },
 }));
 
 export default function Signup() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const classes = useStyles();
+  const mutation = useMutation((email, passyword) =>
+    axios.post('https://138.68.163.236/api/v1/users/login', { email, password }),
+  );
+  const handleSubmit = () => {
+    mutation.mutate(email, password);
+  };
   return (
     <div className={classes.one}>
       <Container component="main" maxWidth="xs">
@@ -85,6 +96,7 @@ export default function Signup() {
               name="email"
               autoComplete="email"
               autoFocus
+              onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
               variant="outlined"
@@ -96,23 +108,14 @@ export default function Signup() {
               type="New password"
               id="New password"
               autoComplete="current-password"
+              onChange={(e) => setPassword(e.target.value)}
             />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
+
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-            <Link to="/users">
+            <Link to="/Home">
               <Button
                 type="submit"
                 fullWidth
@@ -120,16 +123,18 @@ export default function Signup() {
                 color="primary"
                 className={classes.submit}
               >
-                Sign In
+                Sign Up
               </Button>
             </Link>
-            <Link to="/users">
+            <Link to="/">
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 color="primary"
                 className={classes.submit}
+                onClick={handleSubmit}
+                disabled={mutation.isLoading}
               >
                 Cancel
               </Button>
